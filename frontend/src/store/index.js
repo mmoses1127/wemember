@@ -2,6 +2,7 @@ import { legacy_createStore, combineReducers, applyMiddleware, compose } from 'r
 import thunk from 'redux-thunk';
 
 import usersReducer from './users';
+import sessionReducer from './session';
 
 
 const rootReducer = combineReducers ({
