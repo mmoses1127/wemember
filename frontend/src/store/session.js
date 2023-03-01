@@ -12,12 +12,11 @@ export const getCurrentUser = (state = {}) => {
 }
 
 export const signup = inputs => async dispatch => {
-  let {email, name, password} = inputs;
+  let {username, password} = inputs;
   let res = await csrfFetch('/api/users', {
     method: 'POST',
     body: JSON.stringify({
-      email,
-      name,
+      username,
       password
     })
   })

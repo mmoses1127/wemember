@@ -1,14 +1,17 @@
-import useState from 'react';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { signup } from '../store/session';
 
 const Signup = () => {
 
+  const dispatch = useDispatch();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
 
   const handleSignup = (e) => {
     e.preventDefault();
-    
+    dispatch(signup({username, password}));
   }
 
 
