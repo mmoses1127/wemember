@@ -8,7 +8,7 @@ const Memory = () => {
 
   const dispatch = useDispatch();
   const history = useHistory();
-  const {memoryId} = useParams()
+  const {memoryId} = useParams();
   const memory = useSelector(getMemory(memoryId));
 
   useEffect(() => {
@@ -22,9 +22,13 @@ const Memory = () => {
 
   const handleDelete = (e) => {
     e.preventDefault();
-    dispatch(deleteMemory(memoryId));
-    history.push('/');
+    if (window.confirm('Are you sure you want to delete this memory?')) {
+      dispatch(deleteMemory(memoryId));
+      history.push('/');
+    }
   };
+
+  if (!memory) return null;
 
   return (
     <div>

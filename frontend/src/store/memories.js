@@ -33,7 +33,7 @@ export const getMemories = (state = {}) => {
   }
 };
 
-export const getMemory = (state = {}, memoryId) => {
+export const getMemory = memoryId => (state = {}) => {
   if (state.memories) {
     return state.memories[memoryId];
   } else {
@@ -69,7 +69,6 @@ export const createMemory = (memory) => async dispatch => {
   });
   if (res.ok) {
     let data = await res.json();
-    console.log('data is: ', data)
     await dispatch(addMemory(data));
     return data;
   } else {
@@ -84,7 +83,8 @@ export const updateMemory = (memory) => async dispatch => {
   });
   if (res.ok) {
     let data = await res.json();
-    dispatch(addMemory(data));
+    await dispatch(addMemory(data));
+    return data;
   } else {
     console.log('error updating memory');
   }

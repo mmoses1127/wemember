@@ -13,7 +13,7 @@ const NavBar = () => {
 
   return (
 
-    <div>
+    <div className="w-full flex flex-row justify-evenly p-5">
       <NavLink to="/login">Login</NavLink>
       <NavLink to="/signup">Signup</NavLink>
       <button onClick={handleLogout} >Log Out</button>

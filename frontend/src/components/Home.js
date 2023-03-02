@@ -23,9 +23,9 @@ const Home = () => {
 
 
   return (
-    <div>
-      <h1>Home</h1>
-      <div>
+    <div className="flex flex-col items-center justify-center bg-slate-600 w-1/2 h-1/2 rounded-lg p-5">
+      <h1 className="text-blue-500 font-bold text-5xl pb-5">Home</h1>
+      <div className="">
         <ul>Memories
         {
           memories && memories.map(memory => 
