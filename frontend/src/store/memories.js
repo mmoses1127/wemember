@@ -1,3 +1,5 @@
+import csrfFetch from "./csrf";
+
 const ADD_MEMORIES = 'ADD_MEMORIES';
 const ADD_MEMORY = 'ADD_MEMORY';
 const REMOVE_MEMORY = 'REMOVE_MEMORY';
@@ -59,12 +61,25 @@ export const fetchMemory = (memoryId) => async dispatch => {
   }
 };
 
+export const createMemory = (memory) => async dispatch => {
+  console.log('CREATE MEMORY: ', memory)
+  let res = await csrfFetch('/api/memories', {
+    method: 'POST',
+    body: JSON.stringify(memory)
+  });
+  if (res.ok) {
+    let data = await res.json();
+    console.log('data is: ', data)
+    await dispatch(addMemory(data));
+    return data;
+  } else {
+    console.log('error creating memory');
+  }
+};
+
 export const updateMemory = (memory) => async dispatch => {
-  let res = await fetch(`/api/memories/${memory.id}`, {
+  let res = await csrfFetch(`/api/memories/${memory.id}`, {
     method: 'PATCH',
-    headers: {
-      'Content-Type': 'application/json'
-    },
     body: JSON.stringify(memory)
   });
   if (res.ok) {
@@ -76,7 +91,7 @@ export const updateMemory = (memory) => async dispatch => {
 };
 
 export const deleteMemory = (memoryId) => async dispatch => {
-  let res = await fetch(`/api/memories/${memoryId}`, {
+  let res = await csrfFetch(`/api/memories/${memoryId}`, {
     method: 'DELETE'
   });
   if (res.ok) {
@@ -91,6 +106,7 @@ export const deleteMemory = (memoryId) => async dispatch => {
 
 const memoriesReducer = (state = {}, action) => {
   let newState = {...state};
+  console.log('action is: ', action)
   switch (action.type) {
     case ADD_MEMORIES:
       newState = action.memories;

@@ -1,1 +1,1 @@
-json.extract! @memory, :id, :title, :body, :author_id, :created_at, :updated_at
+json.extract! @memory, :id, :title, :date, :description, :author_id, :created_at, :updated_at

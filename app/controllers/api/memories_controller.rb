@@ -40,7 +40,7 @@ class Api::MemoriesController < ApplicationController
   private
 
   def memory_params
-    memory.require(:memory).permit(:title, :body, :author_id)
+    params.require(:memory).permit(:title, :description, :date, :author_id)
   end
 
 end

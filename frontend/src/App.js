@@ -6,6 +6,9 @@ import { useSelector } from 'react-redux';
 import { getCurrentUser } from './store/session';
 import Home from './components/Home';
 import NavBar from './components/Navbar';
+import NewMemory from './components/NewMemory';
+import UpdateMemory from './components/UpdateMemory';
+import Memory from './components/Memory';
 
 function App() {
 
@@ -18,6 +21,15 @@ function App() {
       <Switch>
         <Route exact path="/">
           <Home/>
+        </Route>
+        <Route exact path="/new">
+          <NewMemory />
+        </Route>
+        <Route exact path="/memories/:memoryId">
+          <Memory />
+        </Route>
+        <Route exact path="/memories/:memoryId/edit">
+          <UpdateMemory />
         </Route>
         <Route path=''>
           <Redirect to='/' />
