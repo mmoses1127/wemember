@@ -3,11 +3,13 @@ import thunk from 'redux-thunk';
 
 import usersReducer from './users';
 import sessionReducer from './session';
+import memoriesReducer from './memories';
 
 
 const rootReducer = combineReducers ({
   users: usersReducer,
-  session: sessionReducer
+  session: sessionReducer,
+  memories: memoriesReducer
 });
 
 let enhancer;

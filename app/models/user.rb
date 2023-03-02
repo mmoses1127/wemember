@@ -6,9 +6,16 @@ class User < ApplicationRecord
 
     validates :username, :password_digest, :session_token, presence: true, uniqueness: true
 
-    def self.find_by_credentials(email, password)
+    has_many :memories,
+        foreign_key: :author_id,
+        class_name: :Memory,
+        dependent: :destroy
+
+
+
+    def self.find_by_credentials(username, password)
         user = nil
-        user = User.find_by(email: email)
+        user = User.find_by(username: username)
 
         if user && user.authenticate(password)
         return user
